@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react";
+import Lottie from "lottie-react";
+import loaderAnimation from "../assets/blue loading.json";
 
 const Loader = () => {
   return (
-    <div className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/50">
-      <div className="h-16 w-16 animate-spin rounded-full border-4 border-dashed border-blue-500"></div>
+    <div className="flex justify-center items-center h-screen bg-gray-900">
+      <Lottie 
+        animationData={loaderAnimation} 
+        loop={true} 
+        style={{ width: 200, height: 200 }} 
+      />
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import React from "react";
 
 export default function About() {
+  
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-900 px-6">
       {/* About Section */}

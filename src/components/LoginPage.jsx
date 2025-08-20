@@ -26,12 +26,17 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email,password);
       toast.success("Logged in successfully!", { position: "top-center" });
-      navigate("/"); // redirect to home/dashboard
+      setTimeout(() => {
+      setLoading(false);
+      navigate("/");
+    }, 6000);
     } catch (error) {
       toast.error(`Login failed: ${error.message}`, { position: "top-center" });
     }
     finally{
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 6000);
     }
   };
 
