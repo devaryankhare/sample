@@ -4,6 +4,8 @@ import Home from './components/Home.jsx';
 import About from './components/About.jsx';
 import SignupPage from './components/SignupPage.jsx';
 import LoginPage from './components/LoginPage.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { createBrowserRouter,createRoutesFromElements ,Route, RouterProvider} from 'react-router-dom';
 
@@ -27,5 +29,10 @@ const router = createBrowserRouter(
 )
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer position="top-center" autoClose={5000} />
+    </>
+  );
 }
