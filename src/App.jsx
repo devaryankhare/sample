@@ -2,6 +2,8 @@ import React from 'react';
 import Layout from './components/Layout.jsx';
 import Home from './components/Home.jsx';
 import About from './components/About.jsx';
+import SignupPage from './components/SignupPage.jsx';
+import LoginPage from './components/LoginPage.jsx';
 
 import { createBrowserRouter,createRoutesFromElements ,Route, RouterProvider} from 'react-router-dom';
 
@@ -9,11 +11,13 @@ import { createBrowserRouter,createRoutesFromElements ,Route, RouterProvider} fr
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path='signup' element={<SignupPage />} />
+       <Route path='login' element={<LoginPage />} />
     <Route path='/' element={<Layout />}>
-      <Route path='' element={<Home />} />
+      <Route path='/' element={<Home />} />
       <Route path='about' element={<About />} />
-      
-      
+        
+       
 
     </Route>
     
