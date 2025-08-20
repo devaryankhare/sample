@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { createBrowserRouter,createRoutesFromElements ,Route, RouterProvider} from 'react-router-dom';
+import { AuthProvider } from '../src/components/AuthProvider.jsx';
 
 
 const router = createBrowserRouter(
@@ -31,8 +32,10 @@ const router = createBrowserRouter(
 export default function App() {
   return (
     <>
-      <RouterProvider router={router} />
-      <ToastContainer position="top-center" autoClose={5000} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <ToastContainer position="top-center" autoClose={5000} />
+      </AuthProvider>
     </>
   );
 }
