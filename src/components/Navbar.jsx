@@ -22,6 +22,22 @@ export default function Navbar() {
             </a>
           </li>
           <li>
+            <a
+              href="/login"
+              className="bg-green-500 text-white px-4 py-2 rounded"
+            >
+              Login
+            </a>
+          </li>
+          <li>
+            <a
+              href="/signup"
+              className="bg-green-500 text-white px-4 py-2 rounded"
+            >
+              Sign Up
+            </a>
+          </li>
+          <li>
             <a href="/about" className="hover:text-green-500">
               About
             </a>
