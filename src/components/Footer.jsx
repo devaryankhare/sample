@@ -1,9 +1,11 @@
 // Footer.jsx
 import React from "react";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; 
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-6 mt-10">
+    <footer className="bg-gradient-to-r from-cyan-700 via-cyan-600 to-cyan-800 text-gray-900 py-6 mt-10">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
         
         {/* Logo / Brand */}
@@ -13,14 +15,14 @@ export default function Footer() {
         
         {/* Links */}
         <ul className="flex space-x-6 mb-4 md:mb-0">
-          <li><a href="#" className="hover:text-white">Home</a></li>
-          <li><a href="#" className="hover:text-white">About</a></li>
-          <li><a href="#" className="hover:text-white">Services</a></li>
-          <li><a href="#" className="hover:text-white">Contact</a></li>
+          <li><Link to="/" className="hover:text-white">Home</Link> </li>
+          <li><Link to="/about" className="hover:text-white">About</Link></li>
+          <li><Link to="/services" className="hover:text-white">Services</Link></li>
+          <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
         </ul>
         
         {/* Copyright */}
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-white">
           © {new Date().getFullYear()} MyWebsite. All rights reserved.
         </p>
       </div>

@@ -1,46 +1,66 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; 
 import { useAuth } from "../components/AuthProvider.jsx";
 import { signOut } from "firebase/auth";
 import { auth } from "../authentication/firebase";
+import Loader from "./Loader.jsx";
+import { useState } from "react";
 
 export default function Navbar() {
   const { currentUser } = useAuth();
   const { userProfile } = useAuth();
+  const [loading, setLoading] = useState(true);
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   const handleLogout = () => {
     signOut(auth).catch((error) => console.error("Sign out error", error));
   };
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-gradient-to-r from-white to-cyan-100 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           {/* Replace with your logo */}
-          <div className="text-green-600 font-bold text-xl">
-            AUTO CAR
+          <div className="text-cyan-600 font-bold text-xl">
+            SAMPLE
           </div>
         </div>
-
+        
+        <div className="">
         {/* Nav Links */}
         <ul className="flex space-x-6 text-gray-600 font-medium">
           <li>
-            <a
-              href="/"
-              className="bg-green-500 text-white px-4 py-2 rounded"
+            <NavLink
+              to="/"
+              
+              className={({ isActive }) =>
+               isActive ? "text-cyan-600" : "text-gray-600 hover:text-cyan-600 transition-colors duration-300"
+              }
+
             >
               Home
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/about" className=" px-4 py-2 rounded font-semibold text-white
-                bg-gradient-to-r from-green-500 via-green-600 to-green-700
-                bg-[length:200%_auto]
-                hover:bg-[position:right_center]
-                transition-all duration-500">
+            <NavLink to="/about" 
+            className={({ isActive }) =>
+              isActive ? "text-cyan-600" : "text-gray-600 hover:text-cyan-600 transition-colors duration-300"
+            }>
               About
-            </a>
+            </NavLink>
           </li>
+          </ul>
+          </div>
+
+          <div>
+          <ul className="flex space-x-6 text-gray-600 font-medium">
           {currentUser ? (
             <>
               <li className="font-semibold text-gray-700">
@@ -49,11 +69,7 @@ export default function Navbar() {
               <li>
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 rounded font-semibold text-white
-                             bg-gradient-to-r from-red-500 via-red-600 to-red-700
-                             bg-[length:200%_auto]
-                             hover:bg-[position:right_center]
-                             transition-all duration-500"
+                  className="hover:text-red-600 transition-colors duration-300"
                 >
                   Logout
                 </button>
@@ -65,11 +81,7 @@ export default function Navbar() {
               <li>
                 <Link
                   to="/login"
-                  className="px-4 py-2 rounded font-semibold text-white
-                             bg-gradient-to-r from-green-500 via-green-600 to-green-700
-                             bg-[length:200%_auto]
-                             hover:bg-[position:right_center]
-                             transition-all duration-500"
+                  className="hover:text-cyan-600 transition-colors duration-300"
                 >
                   Login
                 </Link>
@@ -77,7 +89,7 @@ export default function Navbar() {
               <li>
                 <Link
                   to="/signup"
-                  className="bg-green-500 text-white px-4 py-2 rounded"
+                  className="hover:text-cyan-600 transition-colors duration-300"
                 >
                   Sign Up
                 </Link>
@@ -85,6 +97,7 @@ export default function Navbar() {
             </>
           )}
         </ul>
+        </div>
       </div>
     </nav>
   );

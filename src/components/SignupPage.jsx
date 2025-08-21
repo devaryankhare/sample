@@ -146,15 +146,25 @@ export default function SignupPage() {
               Sign Up
             </button>
 
-            <p className="text-center text-sm text-gray-600 mt-4">
-              or{" "}
-              <button
-                onClick={handleGoogleSignUp}
-                className="text-purple-600 hover:underline"
-              >
+            <p className="text-center text-sm text-gray-600 mt-4">or</p>
+
+            {/* Google Sign Up Button Container */}
+            <button
+              onClick={handleGoogleSignUp}
+              className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 transition-colors duration-200 shadow-sm relative flex items-center"
+            >
+              {/* Google Icon - Leftmost */}
+              <img 
+                src="src/assets/images/google.png" 
+                alt="Google" 
+                className="w-6 h-6 flex-shrink-0 hover:scale-110 transition-transform duration-200"
+              />
+              
+              {/* Text - Centered */}
+              <span className="flex-1 text-center text-gray-700 font-medium">
                 Sign Up with Google
-              </button>
-            </p>
+              </span>
+            </button>
           </form>
 
           <p className="text-center text-sm text-gray-600 mt-6">

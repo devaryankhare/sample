@@ -11,7 +11,6 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
   // const handleChange = (e) => {
   //   const { name, value } = e.target;
@@ -22,45 +21,28 @@ export default function LoginPage() {
   // Email/Password login
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email,password);
       toast.success("Logged in successfully!", { position: "top-center" });
-      setTimeout(() => {
-      setLoading(false);
       navigate("/");
-    }, 6000);
     } catch (error) {
       toast.error(`Login failed: ${error.message}`, { position: "top-center" });
-    }
-    finally{
-      setTimeout(() => {
-        setLoading(false);
-      }, 6000);
     }
   };
 
   // Google OAuth login
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
-    setLoading(true);
     try {
       await signInWithPopup(auth, provider);
       toast.success("Logged in with Google!", { position: "top-center" });
-      setLoading(true);
       navigate("/");
     } catch (error) {
       toast.error(`Google Login Error: ${error.message}`, { position: "top-center" });
     }
-    finally{
-      setLoading(false);
-    }
   };
 
   return (
-     loading ? (
-      <Loader />
-    ) : (
       <div className="flex min-h-screen">
         {/* Left side */}
         <div
@@ -123,16 +105,32 @@ export default function LoginPage() {
                 Login
               </button>
             </form>
-            {/* Google Login */}
+            
+            
             <p className="text-center text-sm text-gray-600 mt-4">
               or{" "}
-              <button
-                onClick={handleGoogleLogin}
-                className="text-purple-600 hover:underline"
-              >
-                Login with Google
-              </button>
-            </p>
+              </p>
+              <div className="flex items-center justify-between border-2 border-gray-300 rounded-lg p-4 mt-4 hover:border-purple-400 transition-colors duration-200 cursor-pointer shadow-sm hover:shadow-md">
+                <button
+                  onClick={handleGoogleLogin}
+                  className="flex items-center w-full focus:outline-none"
+                >
+                  {/* Google Icon - Left aligned */}
+                  <img 
+                    src="src/assets/images/google.png" 
+                    alt="Google" 
+                    className="w-6 h-6 flex-shrink-0 hover:scale-110 transition-transform duration-200"
+                  />
+                  
+                  {/* Text - Centered */}
+                  <p className="flex-1 text-center text-gray-700 font-medium text-base">
+                    Continue with Google
+                  </p>
+                  
+                  {/* Invisible spacer to balance the layout */}
+                  <div className="w-6 h-6 flex-shrink-0"></div>
+                </button>
+              </div>
             <p className="text-center text-sm text-gray-600 mt-6">
               Don’t have an account?{" "}
               <Link to="/signup" className="text-purple-600 hover:underline">
@@ -143,5 +141,4 @@ export default function LoginPage() {
         </div>
       </div>
     )
-  );
 }

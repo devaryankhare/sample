@@ -4,7 +4,7 @@ import loaderAnimation from "../assets/blue loading.json";
 
 const Loader = () => {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-900">
+    <div className="flex justify-center items-center h-screen bg-cyan-300">
       <Lottie 
         animationData={loaderAnimation} 
         loop={true} 
